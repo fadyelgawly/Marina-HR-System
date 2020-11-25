@@ -63,6 +63,7 @@ namespace MarinaHR
 
             app.UseRouting();
 
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -71,6 +72,8 @@ namespace MarinaHR
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

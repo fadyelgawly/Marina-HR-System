@@ -6,8 +6,6 @@ namespace MarinaHR.Models
 {
     public class Employee : User
     {
-        [Key]
-        public int ID { get; set; }
         public string Name { get; set; }
         public DateTime Birthdate { get; set; }
         public int PlaceID { get; set; }    

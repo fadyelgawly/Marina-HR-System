@@ -30,36 +30,6 @@ namespace MarinaHR.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("MarinaHR.Models.Employee", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Birthdate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("DepartmentID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PlaceID")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("DepartmentID");
-
-                    b.HasIndex("PlaceID");
-
-                    b.ToTable("Employees");
-                });
-
             modelBuilder.Entity("MarinaHR.Models.Place", b =>
                 {
                     b.Property<int>("ID")
@@ -159,6 +129,10 @@ namespace MarinaHR.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
@@ -209,6 +183,8 @@ namespace MarinaHR.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -292,17 +268,25 @@ namespace MarinaHR.Migrations
 
             modelBuilder.Entity("MarinaHR.Models.Employee", b =>
                 {
-                    b.HasOne("MarinaHR.Models.Department", "Department")
-                        .WithMany("Employees")
-                        .HasForeignKey("DepartmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.HasOne("MarinaHR.Models.Place", "Place")
-                        .WithMany("Employees")
-                        .HasForeignKey("PlaceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DepartmentID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PlaceID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("DepartmentID");
+
+                    b.HasIndex("PlaceID");
+
+                    b.HasDiscriminator().HasValue("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -352,6 +336,21 @@ namespace MarinaHR.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MarinaHR.Models.Employee", b =>
+                {
+                    b.HasOne("MarinaHR.Models.Department", "Department")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MarinaHR.Models.Place", "Place")
+                        .WithMany("Employees")
+                        .HasForeignKey("PlaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

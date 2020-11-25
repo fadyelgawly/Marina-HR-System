@@ -45,5 +45,25 @@ namespace MarinaHR.Controllers
             }
             return View(model);
         }  
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+         [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var result = await signinManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                } else {
+                    ModelState.AddModelError(string.Empty, "اسم المستخدم او كلمة المرور غير صحيحة");
+                }
+            }
+            return View(model);
+        }
     }
 }
