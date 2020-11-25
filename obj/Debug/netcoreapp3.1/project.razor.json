@@ -14457,6 +14457,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/fadyhanna/MarinaHR/Views/Vacation/Create.cshtml",
+      "TargetPath": "Views\\Vacation\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/fadyhanna/MarinaHR/Views/Place/Create.cshtml",
       "TargetPath": "Views\\Place\\Create.cshtml",
       "FileKind": "mvc"
@@ -14469,6 +14474,11 @@
     {
       "FilePath": "/Users/fadyhanna/MarinaHR/Views/Employee/Index.cshtml",
       "TargetPath": "Views\\Employee\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/fadyhanna/MarinaHR/Views/Vacation/Index.cshtml",
+      "TargetPath": "Views\\Vacation\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

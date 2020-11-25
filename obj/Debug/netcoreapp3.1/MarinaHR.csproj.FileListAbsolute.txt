@@ -89,3 +89,5 @@
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_LoginPartial.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Account/Register.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Account/Login.cshtml.g.cs
+/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Vacation/Create.cshtml.g.cs
+/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Vacation/Index.cshtml.g.cs

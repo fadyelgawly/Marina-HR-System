@@ -9,16 +9,16 @@
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
     </li>
     <li class="nav-item">
-       <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+       <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">تسجيل خروج</a>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a> 
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">تسجيل</a> 
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">تسجيل الدخول</a>
     </li>
 }
 </ul>
