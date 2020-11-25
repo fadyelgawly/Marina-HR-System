@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MarinaHR.Models
 {
-    public class Employee
+    public class Employee : User
     {
         [Key]
         public int ID { get; set; }
@@ -12,11 +12,6 @@ namespace MarinaHR.Models
         public DateTime Birthdate { get; set; }
         public int PlaceID { get; set; }    
         public int DepartmentID { get; set; }
-
-        [Phone]
-        public string PhoneNumber { get; set; }
-        
-        
 
         [ForeignKey("PlaceID")]
         public virtual Place Place { get; set; }
