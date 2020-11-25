@@ -28,6 +28,33 @@ namespace MarinaHR.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Finance"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Management"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Sales"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Transport"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Labour"
+                        });
                 });
 
             modelBuilder.Entity("MarinaHR.Models.Place", b =>
