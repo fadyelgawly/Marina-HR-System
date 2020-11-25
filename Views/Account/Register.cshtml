@@ -1,0 +1,39 @@
+@model MarinaHR.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "User Register";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form asp-action="Register">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a asp-action="Login">I have an account</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

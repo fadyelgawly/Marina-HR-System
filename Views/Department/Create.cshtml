@@ -1,0 +1,11 @@
+@model MarinaHR.Models.Department
+
+
+<form asp-action="Create" asp-controller="Department" method="POST">
+<div class="form-group">
+    <label asp-for="Name" ></label>
+    <input asp-for="Name" class="form-control">
+    <span asp-validation-for="Name"></span>
+</div>
+<input type="submit" class="btn btn-info" value="Create">
+</form>

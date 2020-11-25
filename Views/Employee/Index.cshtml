@@ -1,0 +1,23 @@
+@model IList<MarinaHR.Models.Employee>
+
+<a class="btn btn-success" asp-controller="Employee" asp-action="Create">Create New</a>
+<br/><br/><br/>
+        <table class="table table-striped">
+            <th>
+                <td>Name</td>
+                <td>Phone</td>
+                <td>Department</td>
+                
+            </th>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.DepartmentID</td>
+                
+                </tr>
+            }
+        </table>
+
