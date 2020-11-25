@@ -63,7 +63,7 @@ namespace MarinaHR
 
             app.UseRouting();
 
-            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

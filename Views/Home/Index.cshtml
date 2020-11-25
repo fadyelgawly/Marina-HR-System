@@ -9,5 +9,7 @@
     <h1 class="display-4">Welcome</h1>
 </div>
 
-
+@if (SignInManager.IsSignedIn(User))
+{
         <p>Hello @User.Identity.Name!</p> 
+}

@@ -65,5 +65,10 @@ namespace MarinaHR.Controllers
             }
             return View(model);
         }
+        public async Task<IActionResult> Logout()
+        {
+            await signinManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
