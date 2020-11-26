@@ -32,7 +32,8 @@ namespace MarinaHR.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid){
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+
+                var user = new IdentityUser { UserName = model.UserName };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded){
                     await signinManager.SignInAsync(user, isPersistent: true);
@@ -55,7 +56,7 @@ namespace MarinaHR.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await signinManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await signinManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
                 if(result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");

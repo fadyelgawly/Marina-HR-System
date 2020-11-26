@@ -9,16 +9,11 @@ namespace MarinaHR.ViewModels
 {
     public class LoginViewModel
     {
-
-            [EmailAddress]
-            [MaxLength(50), MinLength(7)]
-            public string Email { get; set; }
-
+            public string UserName { get; set; }
             [Required]
             [DataType(DataType.Password)]
             [MaxLength(100), MinLength(4)]
             public string Password { get; set; }
-
             [Display(Name = "Remember Me?")]
             public bool RememberMe { get; set; }
     }

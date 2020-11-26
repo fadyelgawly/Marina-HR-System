@@ -16,8 +16,8 @@ namespace MarinaHR.Models
         public int EmployeeID { get; set; }
         
                
-        [ForeignKey("EmployeeID")]
-        public virtual Employee Employee { get; set; }
+        // [ForeignKey("EmployeeID")]
+        // public virtual Employee Employee { get; set; }
         
         
     }
