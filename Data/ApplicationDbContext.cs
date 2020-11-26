@@ -14,9 +14,11 @@ namespace MarinaHR.Data
         {
             base.OnModelCreating(builder);
 
-            // next block code for seed database
             builder.ApplyConfiguration(new DepartmentSeed());
-
+            builder.ApplyConfiguration(new PlaceSeed());
+            builder.ApplyConfiguration(new UserSeed());
+            builder.ApplyConfiguration(new RoleSeed());
+            builder.ApplyConfiguration(new UserRoleSeed());
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

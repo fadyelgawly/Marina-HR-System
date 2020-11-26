@@ -33,27 +33,27 @@ namespace MarinaHR.Migrations
                         new
                         {
                             ID = 1,
-                            Name = "Finance"
+                            Name = "المالية"
                         },
                         new
                         {
                             ID = 2,
-                            Name = "Management"
+                            Name = "الإدارة"
                         },
                         new
                         {
                             ID = 3,
-                            Name = "Sales"
+                            Name = "المبيعات"
                         },
                         new
                         {
                             ID = 4,
-                            Name = "Transport"
+                            Name = "الحركة"
                         },
                         new
                         {
                             ID = 5,
-                            Name = "Labour"
+                            Name = "الأشغال"
                         });
                 });
 
@@ -73,6 +73,28 @@ namespace MarinaHR.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Places");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Helioplis 1"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Heliopolis 2"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Sabteya"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Embaba"
+                        });
                 });
 
             modelBuilder.Entity("MarinaHR.Models.Vacation", b =>
@@ -104,6 +126,10 @@ namespace MarinaHR.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
@@ -119,6 +145,8 @@ namespace MarinaHR.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -272,6 +300,13 @@ namespace MarinaHR.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
+                            RoleId = "57784dee-54ff-4115-9835-da06239d6117"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -293,9 +328,56 @@ namespace MarinaHR.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MarinaHR.Models.Employee", b =>
+            modelBuilder.Entity("MarinaHR.Models.UserRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.HasDiscriminator().HasValue("UserRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "57784dee-54ff-4115-9835-da06239d6117",
+                            ConcurrencyStamp = "50945812-3200-47ab-8efb-e12f11967857",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
+                            ConcurrencyStamp = "61141174-4abf-49ac-9f56-97c2f1d8dfe9",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        });
+                });
+
+            modelBuilder.Entity("MarinaHR.Models.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f2e1bd0d-516a-4823-a31c-decbc30c76f0",
+                            Email = "azizmichael@aucegypt.edu",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEAZZ4RtNnusXr86m3HAJlc/sXBp7gD/dBI7hKlOE78AVZV5by8MCFyb1e+XL9od/hQ==",
+                            PhoneNumber = "01111257052",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "a1d80c8d-175d-4588-8c92-1e2061c30167",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
+                });
+
+            modelBuilder.Entity("MarinaHR.Models.Employee", b =>
+                {
+                    b.HasBaseType("MarinaHR.Models.User");
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("TEXT");

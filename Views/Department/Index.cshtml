@@ -1,17 +1,21 @@
 @model IList<MarinaHR.Models.Department>
 
 <a class="btn btn-success" asp-controller="Department" asp-action="Create">أدخل جديد</a>
-<br/><br/><br/>
-        <table class="table table-striped">
-            <th>
-                <td>Department</td>
-            </th>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.ID</td>
-                    <td>@item.Name</td>
-                </tr>
-            }
-        </table>
+<br/>
+<div class="display-4 float-right">
+    الأقسام
+</div>
+<table class="table table-striped float-right">
+    <thead>
+        <tr>
+            <th scope="col">القسم</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MarinaHR.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class DepartmentController : Controller
     {
         private readonly ApplicationDbContext context;

@@ -9,7 +9,7 @@ using MarinaHR.Data;
 
 namespace MarinaHR.Controllers
 {
-    //[Authorize]
+    [Authorize]
    public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext context;

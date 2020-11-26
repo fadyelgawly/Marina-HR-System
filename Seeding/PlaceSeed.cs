@@ -11,16 +11,23 @@ using MarinaHR.Models;
 
 namespace MarinaHR.Seeding
 {
-    public class RoleSeed : IEntityTypeConfiguration<UserRole>
+    public class PlaceSeed : IEntityTypeConfiguration<Place>
     {
-        public void Configure(EntityTypeBuilder<UserRole> builder)
+        public void Configure(EntityTypeBuilder<Place> builder)
         {
-            List<UserRole> role =  new List<UserRole>
+            List<Place> role =  new List<Place>
             {
-                new UserRole() {Id = "57784dee-54ff-4115-9835-da06239d6117", Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
-                new UserRole() {Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79", Name = "Employee", NormalizedName = "EMPLOYEE" }
+                new Place() {ID = 1, Name = "Helioplis 1" },
+                new Place() {ID = 2, Name = "Heliopolis 2"},
+                new Place() {ID = 3, Name = "Sabteya"},
+                new Place() {ID = 4, Name = "Embaba"}
+
             };
             builder.HasData(role);
         }
+
+
+
+
     }
 }

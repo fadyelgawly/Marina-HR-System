@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MarinaHR.Models
@@ -12,7 +13,11 @@ namespace MarinaHR.Models
         public string Reason { get; set; }
         
         public Type VacationType { get; set; }
+        public int EmployeeID { get; set; }
         
+               
+        [ForeignKey("EmployeeID")]
+        public virtual Employee Employee { get; set; }
         
         
     }

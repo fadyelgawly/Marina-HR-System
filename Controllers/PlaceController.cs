@@ -7,7 +7,7 @@ using MarinaHR.Data;
 
 namespace MarinaHR.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class PlaceController : Controller
     {
         private readonly ApplicationDbContext context;

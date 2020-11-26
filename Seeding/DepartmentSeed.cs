@@ -17,11 +17,11 @@ namespace MarinaHR.Seeding
         {
             List<Department> role =  new List<Department>
             {
-                new Department() {ID = 1, Name = "Finance" },
-                new Department() {ID = 2, Name = "Management"},
-                new Department() {ID = 3, Name = "Sales"},
-                new Department() {ID = 4, Name = "Transport"},
-                new Department() {ID = 5, Name = "Labour"}
+                new Department() {ID = 1, Name = "المالية" },
+                new Department() {ID = 2, Name = "الإدارة"},
+                new Department() {ID = 3, Name = "المبيعات"},
+                new Department() {ID = 4, Name = "الحركة"},
+                new Department() {ID = 5, Name = "الأشغال"}
 
             };
             builder.HasData(role);

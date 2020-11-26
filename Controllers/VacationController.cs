@@ -4,17 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using MarinaHR.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace MarinaHR.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class VacationController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public VacationController(ApplicationDbContext _context)
+        public VacationController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
-            context = _context;
+            this.context = context;
+            this.userManager = userManager;
         }
 
         public ActionResult Create()
@@ -32,8 +35,20 @@ namespace MarinaHR.Controllers
 
         public ActionResult Index()
         {
-            var data = context.Vacations.ToList();
-            return View(data);
+           // if (User.IsInRole("Administrator"))
+            // get all vacations
+
+               // var data = context.Vacations.Where(i => i.EmployeeID == GetCurrentUserId).ToList();
+
+                var data = context.Vacations.ToList();
+                return View(data);
+                //else get user's vacations only
+          
+        }
+
+        private string GetCurrentUserId()
+        {
+            return userManager.GetUserId(User);
         }
     }
 }
