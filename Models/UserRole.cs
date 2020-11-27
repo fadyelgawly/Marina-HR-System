@@ -9,5 +9,8 @@ namespace MarinaHR.Models
 {
     public class UserRole : IdentityRole
     {
+        public string NameInArabic { get; set; }
+        
+        
     }
 }

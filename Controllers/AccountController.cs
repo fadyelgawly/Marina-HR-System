@@ -88,7 +88,7 @@ namespace MarinaHR.Controllers
             System.Diagnostics.Debug.WriteLine("GET");
             ViewData["PlacesID"] = new SelectList(context.Places.ToList(), "ID", "Name");
             ViewData["DepartmentID"] = new SelectList(context.Departments.ToList(), "ID", "Name");
-            ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "Name");
+            ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "NameInArabic");
             
             return View();
         }
@@ -126,7 +126,7 @@ namespace MarinaHR.Controllers
 
             ViewData["PlacesID"] = new SelectList(context.Places.ToList(), "ID", "Name");
             ViewData["DepartmentID"] = new SelectList(context.Departments.ToList(), "ID", "Name");
-            ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "Name");
+            ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "NameInArabic");
 
             return View();
         }

@@ -335,22 +335,27 @@ namespace MarinaHR.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
+                    b.Property<string>("NameInArabic")
+                        .HasColumnType("TEXT");
+
                     b.HasDiscriminator().HasValue("UserRole");
 
                     b.HasData(
                         new
                         {
                             Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
-                            ConcurrencyStamp = "1f2f2221-818b-4d52-98da-82b977201a1e",
-                            Name = "موظف",
-                            NormalizedName = "EMPLOYEE"
+                            ConcurrencyStamp = "0ae92020-18b5-471b-a7e0-8743e57adc94",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE",
+                            NameInArabic = "موظف"
                         },
                         new
                         {
                             Id = "57784dee-54ff-4115-9835-da06239d6117",
-                            ConcurrencyStamp = "ef0118d5-b9a8-426b-ad13-36d163370153",
-                            Name = "مدير",
-                            NormalizedName = "ADMINISTRATOR"
+                            ConcurrencyStamp = "ecce8784-ea42-4749-94d0-65084513141c",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR",
+                            NameInArabic = "مدير"
                         });
                 });
 
@@ -381,16 +386,16 @@ namespace MarinaHR.Migrations
                         {
                             Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a45297bb-e259-4dc2-8312-c59f531d38eb",
+                            ConcurrencyStamp = "c42fe767-412f-4fd6-abc3-a4b59a3d349c",
                             Email = "azizmichael@aucegypt.edu",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEp6xgM+ItaADfq9qLKUPAwVMvehOqu3ACcvOI6Xk0fN2oxLuM6yj+u0+7hXfuK7Rg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJX5gvkus3yTS43SdGQxBJ8He+3MTq0QzwpwXlZ+DI3Vr/FcNjXVdLgMOLrthPJy7w==",
                             PhoneNumber = "01111257052",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d9f48298-aca2-4c16-8b19-421bfe60d37e",
+                            SecurityStamp = "64796df7-e8c5-46f4-9b6c-e2c0ed277b15",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
