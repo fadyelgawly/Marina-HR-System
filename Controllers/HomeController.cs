@@ -6,22 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MarinaHR.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace MarinaHR.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SignInManager<User> signInManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                              SignInManager<User> signInManager)
         {
             _logger = logger;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
-            //return View();
-            return RedirectToAction("Login", "Account");
+        if (signInManager.IsSignedIn(User))
+            {
+                return View();
+            } 
+            else 
+            {
+                return RedirectToAction("Login", "Account");   
+            }
         }
 
         public IActionResult Privacy()
