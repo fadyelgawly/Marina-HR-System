@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using MarinaHR.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarinaHR.Controllers
 {
@@ -19,31 +20,34 @@ namespace MarinaHR.Controllers
             this.context = context;
             this.userManager = userManager;
         }
-
-        public ActionResult Create()
+        public ActionResult RequestVacation()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Vacation vacation)
+        public async Task<IActionResult>  RequestVacation(Vacation vacation)
         {
+            var user = await userManager.GetUserAsync(User); 
+
+            System.Diagnostics.Debug.WriteLine(user.Id);
+
+            vacation.UserID = user.Id;
             context.Vacations.Add(vacation);
             context.SaveChanges();
-            return View("Index", context.Vacations.ToList());
+
+            var data = context.Vacations
+                    .Include(vacation => vacation.User).ToList();
+
+            return View("Index", data);
         }
+
 
         public ActionResult Index()
         {
-           // if (User.IsInRole("Administrator"))
-            // get all vacations
-
-               // var data = context.Vacations.Where(i => i.UserID == GetCurrentUserId).ToList();
-
-                var data = context.Vacations.ToList();
+                var data = context.Vacations
+                    .Include(vacation => vacation.User).ToList();
                 return View(data);
-                //else get user's vacations only
-          
         }
 
         private string GetCurrentUserId()

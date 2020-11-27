@@ -91,3 +91,4 @@
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Vacation/Index.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Account/CreateUser.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Account/Index.cshtml.g.cs
+/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Vacation/RequestVacation.cshtml.g.cs
