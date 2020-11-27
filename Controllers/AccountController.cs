@@ -131,6 +131,10 @@ namespace MarinaHR.Controllers
             return View();
         }
         
+         public ActionResult Index()
+        {
+            return View(userManager.Users);
+        }
         private string PasswordGenerator(User user, string password)
         {
             var passwordHash = new PasswordHasher<User>();

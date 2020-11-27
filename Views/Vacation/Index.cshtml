@@ -1,17 +1,25 @@
 @model IList<MarinaHR.Models.Vacation>
 
-<a class="btn btn-success" asp-controller="Vacation" asp-action="Create">أدخل جديد</a>
-<br/><br/><br/>
-        <table class="table table-striped">
-            <th>
-                <td>Vacation</td>
-            </th>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Days</td>
-                    <td>@item.Reason</td>
-                </tr>
-            }
-        </table>
+<a class="btn btn-success" asp-controller="Vacation" asp-action="Create">طلب اجازة</a>
+<div class="display-4 text-right float-right">
+    الاجازات
+</div>
+<br/>
+<table class="table table-striped float-left">
+    <thead>
+        <tr class="text-right">
 
+            <th scope="col">الاسم</th>
+            <th scope="col">عدد الأيام</th>
+            <th scope="col">السبب</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">@item.Days</td>
+            <td class="text-right">@item.Days</td>
+            <td class="text-right">@item.Reason</td>
+        </tr>
+    }
+</table>

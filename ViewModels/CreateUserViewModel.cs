@@ -10,7 +10,7 @@ namespace MarinaHR.ViewModels
     public class CreateUserViewModel
     {
         
-        [Display(Name = "Role")]
+        [Display(Name = "وظيفة")]
         public string RoleID { get; set; }
 
         [Display(Name = "مكان العمل")]
@@ -19,7 +19,7 @@ namespace MarinaHR.ViewModels
         [Display(Name = "القسم")]
         public int DepartmentID { get; set; }
 
-
+        [Display(Name = "اسم المستخدم")]
         public string UserName { get; set; }
 
         [Display(Name = "الاسم")]
@@ -29,7 +29,7 @@ namespace MarinaHR.ViewModels
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
 
-        [Display(Name = "Phone Number")]
+        [Display(Name = "رقم الهاتف")]
         public string PhoneNumber { get; set; }
 
 

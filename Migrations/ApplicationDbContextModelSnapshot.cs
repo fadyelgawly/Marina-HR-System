@@ -340,17 +340,17 @@ namespace MarinaHR.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57784dee-54ff-4115-9835-da06239d6117",
-                            ConcurrencyStamp = "9d43f918-76af-4be9-a34e-ebc22fd15756",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
+                            Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
+                            ConcurrencyStamp = "1f2f2221-818b-4d52-98da-82b977201a1e",
+                            Name = "موظف",
+                            NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
-                            ConcurrencyStamp = "1e4ae78e-0f98-4cbb-9fbc-89b8aa5cee11",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
+                            Id = "57784dee-54ff-4115-9835-da06239d6117",
+                            ConcurrencyStamp = "ef0118d5-b9a8-426b-ad13-36d163370153",
+                            Name = "مدير",
+                            NormalizedName = "ADMINISTRATOR"
                         });
                 });
 
@@ -381,16 +381,16 @@ namespace MarinaHR.Migrations
                         {
                             Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "addbfba0-cff3-434d-b7fb-a73a6e95b580",
+                            ConcurrencyStamp = "a45297bb-e259-4dc2-8312-c59f531d38eb",
                             Email = "azizmichael@aucegypt.edu",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF9NafyamiUHIIws6oXDU7uGxuysY3QeWSS0wCPOiKuUM8zBN2G1keA0Kts791Fsfg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEp6xgM+ItaADfq9qLKUPAwVMvehOqu3ACcvOI6Xk0fN2oxLuM6yj+u0+7hXfuK7Rg==",
                             PhoneNumber = "01111257052",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d36555ac-9b3e-4ab8-9809-b22322ffe985",
+                            SecurityStamp = "d9f48298-aca2-4c16-8b19-421bfe60d37e",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

@@ -1,14 +1,14 @@
-@model IList<MarinaHR.Models.Department>
+@model IEnumerable<User>
 
-<a class="btn btn-success" asp-controller="Department" asp-action="Create">أدخل قسم جديد</a>
+<a class="btn btn-success" asp-controller="Account" asp-action="CreateUser">أدخل موظف جديد</a>
 <div class="display-4 text-right float-right">
-    الأقسام
+    الموظفين
 </div>
 <br/>
 <table class="table table-striped float-left">
     <thead>
         <tr class="text-right">
-            <th scope="col">القسم</th>
+            <th scope="col">الاسم</th>
         </tr>
     </thead>
     @foreach (var item in Model)
@@ -18,4 +18,3 @@
         </tr>
     }
 </table>
-

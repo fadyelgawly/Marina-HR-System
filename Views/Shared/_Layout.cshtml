@@ -29,7 +29,7 @@
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">الموظفين</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">الموظفين</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">الأقسام</a>

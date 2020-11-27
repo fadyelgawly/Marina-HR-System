@@ -17,8 +17,8 @@ namespace MarinaHR.Seeding
         {
             List<UserRole> role =  new List<UserRole>
             {
-                new UserRole() {Id = "57784dee-54ff-4115-9835-da06239d6117", Name = "Administrator", NormalizedName = "ADMINISTRATOR" },
-                new UserRole() {Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79", Name = "Employee", NormalizedName = "EMPLOYEE" }
+                new UserRole() {Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79", Name = "موظف", NormalizedName = "EMPLOYEE" },
+                new UserRole() {Id = "57784dee-54ff-4115-9835-da06239d6117", Name = "مدير", NormalizedName = "ADMINISTRATOR" }  
             };
             builder.HasData(role);
         }
