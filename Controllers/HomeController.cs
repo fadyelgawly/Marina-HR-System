@@ -21,7 +21,7 @@ namespace MarinaHR.Controllers
         public IActionResult Index()
         {
             //return View();
-            return RedirectToAction("Account", "Login");
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult Privacy()
