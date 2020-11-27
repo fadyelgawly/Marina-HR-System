@@ -58,7 +58,14 @@ namespace MarinaHR.Controllers
         }  
         public IActionResult Login()
         {
-            return View();
+             if (!signinManager.IsSignedIn(User))
+            {
+                return View();
+            } 
+            else 
+            {
+                return RedirectToAction("Index", "Home");   
+            }
         }
 
          [HttpPost]
