@@ -106,11 +106,11 @@ namespace MarinaHR.Migrations
                     b.Property<int>("Days")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EmployeeID")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Reason")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("VacationType")
                         .HasColumnType("INTEGER");
@@ -341,14 +341,14 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "57784dee-54ff-4115-9835-da06239d6117",
-                            ConcurrencyStamp = "01b7b059-4722-40c6-b517-8c4e8c6f0730",
+                            ConcurrencyStamp = "9d43f918-76af-4be9-a34e-ebc22fd15756",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
-                            ConcurrencyStamp = "6917d3aa-8e69-46f9-8fd7-657bfe46ba30",
+                            ConcurrencyStamp = "1e4ae78e-0f98-4cbb-9fbc-89b8aa5cee11",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -357,32 +357,6 @@ namespace MarinaHR.Migrations
             modelBuilder.Entity("MarinaHR.Models.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3fec7b50-3e46-4d91-8ebc-50d0bf91fe7c",
-                            Email = "azizmichael@aucegypt.edu",
-                            EmailConfirmed = true,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAHFKJ78k0csFeOMxN4qC6/gKI7hoC/jv0KMwXZAuw4WRXVHjgFmG0bnMz4lSHdbew==",
-                            PhoneNumber = "01111257052",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "27648668-b7af-4119-8472-619ea3aeb317",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
-                });
-
-            modelBuilder.Entity("MarinaHR.Models.Employee", b =>
-                {
-                    b.HasBaseType("MarinaHR.Models.User");
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("TEXT");
@@ -400,7 +374,30 @@ namespace MarinaHR.Migrations
 
                     b.HasIndex("PlaceID");
 
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.HasDiscriminator().HasValue("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "addbfba0-cff3-434d-b7fb-a73a6e95b580",
+                            Email = "azizmichael@aucegypt.edu",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF9NafyamiUHIIws6oXDU7uGxuysY3QeWSS0wCPOiKuUM8zBN2G1keA0Kts791Fsfg==",
+                            PhoneNumber = "01111257052",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "d36555ac-9b3e-4ab8-9809-b22322ffe985",
+                            TwoFactorEnabled = false,
+                            UserName = "admin",
+                            Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartmentID = 1,
+                            Name = "Aziz Michael Hanna",
+                            PlaceID = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -454,16 +451,16 @@ namespace MarinaHR.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MarinaHR.Models.Employee", b =>
+            modelBuilder.Entity("MarinaHR.Models.User", b =>
                 {
                     b.HasOne("MarinaHR.Models.Department", "Department")
-                        .WithMany("Employees")
+                        .WithMany("Users")
                         .HasForeignKey("DepartmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MarinaHR.Models.Place", "Place")
-                        .WithMany("Employees")
+                        .WithMany("Users")
                         .HasForeignKey("PlaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -60,8 +60,6 @@
 /Users/fadyhanna/MarinaHR/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Department/Create.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Department/Index.cshtml.g.cs
-/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Employee/Create.cshtml.g.cs
-/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Employee/Index.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Place/Create.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Place/Index.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Design.dll
@@ -91,3 +89,6 @@
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Account/Login.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Vacation/Create.cshtml.g.cs
 /Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Vacation/Index.cshtml.g.cs
+/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/User/Create.cshtml.g.cs
+/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/User/Index.cshtml.g.cs
+/Users/fadyhanna/MarinaHR/obj/Debug/netcoreapp3.1/Razor/Views/Account/CreateUser.cshtml.g.cs

@@ -28,7 +28,6 @@ namespace MarinaHR.Data
 
         public DbSet<Place> Places { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Employee> Employees { get; set; }
         public DbSet<Vacation> Vacations { get; set; }
         
         

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using MarinaHR.Data;
+using MarinaHR.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +31,7 @@ namespace MarinaHR
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, UserRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequiredLength = 4;

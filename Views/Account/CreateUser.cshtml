@@ -1,0 +1,48 @@
+@model MarinaHR.ViewModels.CreateUserViewModel
+
+
+<form asp-action="CreateUser" asp-controller="Account" method="POST">
+  
+<div class="form-group">
+    <label asp-for="RoleID" ></label>
+    <select asp-for="RoleID" class="form-control" asp-items="ViewBag.RoleID"></select>
+    <span asp-validation-for="RoleID"></span>
+</div>
+<div class="form-group">
+    <label asp-for="DepartmentID" ></label>
+    <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+    <span asp-validation-for="DepartmentID"></span>
+</div>
+<div class="form-group">
+    <label asp-for="PlaceID" ></label>
+    <select asp-for="PlaceID" class="form-control" asp-items="ViewBag.PlacesID"></select>
+    <span asp-validation-for="PlaceID"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Name" ></label>
+    <input asp-for="Name" class="form-control">
+    <span asp-validation-for="Name"></span>
+</div>
+<div class="form-group">
+    <label asp-for="UserName" ></label>
+    <input asp-for="UserName" class="form-control">
+    <span asp-validation-for="UserName"></span>
+</div>
+<div>كلمة المرور الاساسية '1234'</div>
+
+<div class="form-group">
+    <label asp-for="Birthdate" ></label>
+    <input asp-for="Birthdate" class="form-control">
+    <span asp-validation-for="Birthdate"></span>
+</div>
+<div class="form-group">
+    <label asp-for="PhoneNumber" ></label>
+    <input asp-for="PhoneNumber" class="form-control">
+    <span asp-validation-for="PhoneNumber"></span>
+</div>
+
+
+<input type="submit" class="btn btn-info" value="CreateUser">
+</form>
+
+      

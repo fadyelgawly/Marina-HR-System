@@ -13,11 +13,11 @@ namespace MarinaHR.Models
         public string Reason { get; set; }
         
         public Type VacationType { get; set; }
-        public int EmployeeID { get; set; }
+        public int UserID { get; set; }
         
                
-        // [ForeignKey("EmployeeID")]
-        // public virtual Employee Employee { get; set; }
+        // [ForeignKey("UserID")]
+        // public virtual User User { get; set; }
         
         
     }

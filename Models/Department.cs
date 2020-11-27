@@ -9,7 +9,7 @@ namespace MarinaHR.Models
         public int ID { get; set; }
         public string Name { get; set; }
 
-         public virtual ICollection<Employee> Employees { get; set; }
+         public virtual ICollection<User> Users { get; set; }
         
     }
 }

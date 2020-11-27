@@ -12,9 +12,9 @@ namespace MarinaHR.Controllers
     public class VacationController : Controller
     {
         private readonly ApplicationDbContext context;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<User> userManager;
 
-        public VacationController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public VacationController(ApplicationDbContext context, UserManager<User> userManager)
         {
             this.context = context;
             this.userManager = userManager;
@@ -38,7 +38,7 @@ namespace MarinaHR.Controllers
            // if (User.IsInRole("Administrator"))
             // get all vacations
 
-               // var data = context.Vacations.Where(i => i.EmployeeID == GetCurrentUserId).ToList();
+               // var data = context.Vacations.Where(i => i.UserID == GetCurrentUserId).ToList();
 
                 var data = context.Vacations.ToList();
                 return View(data);
