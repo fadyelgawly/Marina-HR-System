@@ -14472,11 +14472,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/fadyhanna/MarinaHR/Views/Vacation/Create.cshtml",
-      "TargetPath": "Views\\Vacation\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/fadyhanna/MarinaHR/Views/Place/Create.cshtml",
       "TargetPath": "Views\\Place\\Create.cshtml",
       "FileKind": "mvc"
