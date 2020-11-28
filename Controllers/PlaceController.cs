@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using MarinaHR.Data;
+using MarinaHR.ViewModels;
 
 namespace MarinaHR.Controllers
 {
@@ -32,7 +33,13 @@ namespace MarinaHR.Controllers
 
         public ActionResult Index()
         {
-            var data = context.Places.ToList();
+            var data = context.Places.Select(a => new PlaceDetailsViewModel
+                {
+                    Name = a.Name,
+                    UsersCount = a.Users.Count()
+                })
+                .ToList();
+
             return View(data);
         }
     }

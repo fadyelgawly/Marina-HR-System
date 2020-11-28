@@ -1,4 +1,4 @@
-@model IList<MarinaHR.Models.Place>
+@model IList<MarinaHR.ViewModels.PlaceDetailsViewModel>
 
 <a class="btn btn-success" asp-controller="Place" asp-action="Create">أدخل مكان جديد</a>
 <div class="display-4 text-right float-right">
@@ -9,12 +9,14 @@
     <thead>
         <tr class="text-right">
             <th scope="col">المكان</th>
+            <th scope="col">عدد الموظفين</th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
         <tr>
             <td class="text-right">@item.Name</td>
+            <td class="text-right">@item.UsersCount</td>
         </tr>
     }
 </table>

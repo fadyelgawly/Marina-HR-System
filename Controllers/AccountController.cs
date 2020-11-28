@@ -92,7 +92,6 @@ namespace MarinaHR.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateUser()
         {
-            System.Diagnostics.Debug.WriteLine("GET");
             ViewData["PlacesID"] = new SelectList(context.Places.ToList(), "ID", "Name");
             ViewData["DepartmentID"] = new SelectList(context.Departments.ToList(), "ID", "Name");
             ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "NameInArabic");
@@ -140,7 +139,10 @@ namespace MarinaHR.Controllers
         
          public ActionResult Index()
         {
-            return View(userManager.Users);
+            var users = userManager.Users
+                .Include(user => user.Department)
+                .Include(user => user.Place);
+            return View(users);
         }
         private string PasswordGenerator(User user, string password)
         {

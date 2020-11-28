@@ -9,12 +9,16 @@
     <thead>
         <tr class="text-right">
             <th scope="col">الاسم</th>
+            <th scope="col">القسم</th>
+            <th scope="col">المكان</th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
         <tr>
             <td class="text-right">@item.Name</td>
+            <td class="text-right">@item.Department.Name</td>
+            <td class="text-right">@item.Place.Name</td>
         </tr>
     }
 </table>
