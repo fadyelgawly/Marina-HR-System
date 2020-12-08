@@ -1,4 +1,4 @@
-@model IList<MarinaHR.Models.Vacation>
+@model IList<MarinaHR.ViewModels.VacationViewModel>
 <div class="display-4 text-right float-right">
     الاجازات
 </div>
@@ -6,18 +6,26 @@
 <table class="table table-striped float-left">
     <thead>
         <tr class="text-right">
-
             <th scope="col">الاسم</th>
-            <th scope="col">عدد الأيام</th>
+            <th scope="col">من</th>
+            <th scope="col">إلى</th>
+            <th scope="col">عدد الايام</th>
             <th scope="col">السبب</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
         <tr>
-            <td class="text-right">@item.User.Name</td>
-            <td class="text-right">@item.Days</td>
+            <td class="text-right">@item.Name</td>
+            <td class="text-right">@item.StartDate</td>
+            <td class="text-right">@item.EndDate</td>
+            <td class="text-right">@item.VacationDays</td>
             <td class="text-right">@item.Reason</td>
+            <td class="text-right">
+                <a class="btn btn-success" asp-controller="Vacation" asp-action="AcceptVacationRequest" asp-route-VacationID="@item.ID">موافق</a>
+                <a class="btn btn-danger" asp-controller="Vacation" asp-action="RefuseVacationRequest" asp-route-VacationID="@item.ID">رفض</a>
+            </td>
         </tr>
     }
 </table>

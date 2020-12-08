@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using MarinaHR.Models;
+using MarinaHR.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
@@ -37,7 +38,18 @@ namespace MarinaHR.Controllers
             context.SaveChanges();
 
             var data = context.Vacations
-                    .Include(vacation => vacation.User).ToList();
+                .Include(vacation => vacation.User)
+                .Select(a => new VacationViewModel
+                {
+
+                    Name = a.User.Name,
+                    StartDate = a.StartDate,
+                    EndDate = a.EndDate,
+                    Reason = a.Reason,
+                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
+                    VacationDaysLeft = 0
+                })
+                .ToList();
 
             return View("Index", data);
         }
@@ -45,10 +57,65 @@ namespace MarinaHR.Controllers
 
         public ActionResult Index()
         {
-                var data = context.Vacations
-                    .Include(vacation => vacation.User).ToList();
-                return View(data);
+            User.IsInRole
+            var data = context.Vacations
+                .Include(vacation => vacation.User)
+                .Select(a => new VacationViewModel
+                {
+                    ID = a.ID,
+                    Name = a.User.Name,
+                    StartDate = a.StartDate,
+                    EndDate = a.EndDate,
+                    Reason = a.Reason,
+                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
+                    VacationDaysLeft = 0
+                })
+                .ToList();
+
+            return View(data);
         }
+
+       public ActionResult AcceptVacationRequest(int VacationID)
+        {
+
+
+            var data = context.Vacations
+                .Include(vacation => vacation.User)
+                .Select(a => new VacationViewModel
+                {
+                    Name = a.User.Name,
+                    StartDate = a.StartDate,
+                    EndDate = a.EndDate,
+                    Reason = a.Reason,
+                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
+                    VacationDaysLeft = 0
+                })
+                .ToList();
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult RefuseVacationRequest(int VacationID)
+        {
+
+
+            var data = context.Vacations
+                .Include(vacation => vacation.User)
+                .Select(a => new VacationViewModel
+                {
+                    Name = a.User.Name,
+                    StartDate = a.StartDate,
+                    EndDate = a.EndDate,
+                    Reason = a.Reason,
+                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
+                    VacationDaysLeft = 0
+                })
+                .ToList();
+
+            return RedirectToAction("Index");
+        }
+
+
+        
 
         private string GetCurrentUserId()
         {

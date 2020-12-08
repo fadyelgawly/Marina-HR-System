@@ -33,27 +33,47 @@ namespace MarinaHR.Migrations
                         new
                         {
                             ID = 1,
-                            Name = "المالية"
+                            Name = "ادارات شركه مارينا"
                         },
                         new
                         {
                             ID = 2,
-                            Name = "الإدارة"
+                            Name = "اداره العملاء"
                         },
                         new
                         {
                             ID = 3,
-                            Name = "المبيعات"
+                            Name = "الاداره الماليه"
                         },
                         new
                         {
                             ID = 4,
-                            Name = "الحركة"
+                            Name = "اداره الموردين"
                         },
                         new
                         {
                             ID = 5,
-                            Name = "الأشغال"
+                            Name = "اداره السبتيه "
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "اداره المخازن"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Name = "اداره البرنامج"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Name = "اداره الفيوم"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Name = "اداره شئون الافراد"
                         });
                 });
 
@@ -78,22 +98,92 @@ namespace MarinaHR.Migrations
                         new
                         {
                             ID = 1,
-                            Name = "Helioplis 1"
+                            Name = "مخزن الضغط"
                         },
                         new
                         {
                             ID = 2,
-                            Name = "Heliopolis 2"
+                            Name = "مخزن اللزق"
                         },
                         new
                         {
                             ID = 3,
-                            Name = "Sabteya"
+                            Name = "مخزن البولى"
                         },
                         new
                         {
                             ID = 4,
-                            Name = "Embaba"
+                            Name = "مخزن الصندره"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "مخزن النواكل"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "مخزن المول "
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Name = "مخزن الجراج"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Name = "مخزن المواسير"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Name = "مخزن الحجاز"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            Name = "مخزن روض الفرج"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            Name = "مخزن محل مارينا جروب( متواجد بمحل مارينا جروب )"
+                        },
+                        new
+                        {
+                            ID = 12,
+                            Name = "مخزن جسر السويس ( بدون موظفين)"
+                        },
+                        new
+                        {
+                            ID = 13,
+                            Name = "مارينا بلاست"
+                        },
+                        new
+                        {
+                            ID = 14,
+                            Name = "مول مارينا بلاس"
+                        },
+                        new
+                        {
+                            ID = 15,
+                            Name = "محل الاخوه"
+                        },
+                        new
+                        {
+                            ID = 16,
+                            Name = "محل مارينا جروب"
+                        },
+                        new
+                        {
+                            ID = 17,
+                            Name = "محل مارينا التجمع"
+                        },
+                        new
+                        {
+                            ID = 18,
+                            Name = "اكوامارينا"
                         });
                 });
 
@@ -103,15 +193,21 @@ namespace MarinaHR.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Days")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Reason")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("VacationStatus")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("VacationType")
                         .HasColumnType("INTEGER");
@@ -347,7 +443,7 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
-                            ConcurrencyStamp = "ded947c3-ed52-4819-8dc4-35ef32f6ca2a",
+                            ConcurrencyStamp = "0b06ae5b-043a-4015-b4e5-a4601d69cb95",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE",
                             NameInArabic = "موظف"
@@ -355,7 +451,7 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "57784dee-54ff-4115-9835-da06239d6117",
-                            ConcurrencyStamp = "b66a0035-34d2-4f44-912f-70c49a9d1e0a",
+                            ConcurrencyStamp = "473da923-5e18-418c-ab56-df955487e702",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR",
                             NameInArabic = "مدير"
@@ -389,22 +485,22 @@ namespace MarinaHR.Migrations
                         {
                             Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "725ad710-f89b-42f6-89c1-92f0532bca84",
+                            ConcurrencyStamp = "b4d3d07a-8ddb-4017-9fa8-b02593d1a18a",
                             Email = "azizmichael@aucegypt.edu",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDKQs/a9U+vP2tZrML26J76W5cayCcTtDzMG13kJtz1HMW1CpURlvxOf94cCIYa/5w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP7aItO95JMZq8lagb9w7+TwiE8gzlw7Jter2+cV19fhgDoQGFDP8H9eqzwfnfqnKg==",
                             PhoneNumber = "01111257052",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "4234fbe8-1943-40e9-b0f1-8b4838c1793a",
+                            SecurityStamp = "60ac9445-0afb-45a9-aba0-6beeeb753dd3",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DepartmentID = 1,
-                            Name = "Aziz Michael Hanna",
-                            PlaceID = 1
+                            Name = "عزيز حنا",
+                            PlaceID = 14
                         });
                 });
 

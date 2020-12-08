@@ -43,9 +43,7 @@ namespace MarinaHR.Controllers
                     UsersCount = a.Users.Count()
                 })
                 .ToList();
-
-
-           // var data = context.Departments.ToList();
+                
             return View(data);
         }
     }

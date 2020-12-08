@@ -1,6 +1,9 @@
 @model IList<MarinaHR.ViewModels.DepartmentDetailsViewModel>
-
-<a class="btn btn-success" asp-controller="Department" asp-action="Create">أدخل قسم جديد</a>
+<div class="container">
+       <div class="text-left">
+            <a class="btn btn-success" asp-controller="Department" asp-action="Create">أدخل قسم جديد</a>
+        </div>
+    <div class="row">
 <div class="display-4 text-right float-right">
     الأقسام
 </div>
@@ -20,4 +23,6 @@
         </tr>
     }
 </table>
+    </div>
+</div>
 
