@@ -57,7 +57,7 @@ namespace MarinaHR.Controllers
 
         public ActionResult Index()
         {
-            User.IsInRole
+            
             var data = context.Vacations
                 .Include(vacation => vacation.User)
                 .Select(a => new VacationViewModel
