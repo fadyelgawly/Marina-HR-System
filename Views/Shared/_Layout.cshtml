@@ -28,18 +28,15 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">الموظفين</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">الأقسام</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Place" asp-action="Index">اماكن العمل</a>
-                            </li>  
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Vacation" asp-action="Index">الاجازات</a>
-                            </li> 
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-dark" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">لوحة المسؤول</a>
+                                <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">                                 
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">الموظفين</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">الأقسام</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Place" asp-action="Index">اماكن العمل</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Vacation" asp-action="Index">الاجازات</a>
+                                </div>
+                            </li>            
                         }
                         @if (SignInManager.IsSignedIn(User))
                         {
