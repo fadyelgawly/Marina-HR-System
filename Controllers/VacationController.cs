@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using MarinaHR.Models;
 using MarinaHR.ViewModels;
@@ -31,27 +32,11 @@ namespace MarinaHR.Controllers
         {
             var user = await userManager.GetUserAsync(User); 
 
-            System.Diagnostics.Debug.WriteLine(user.Id);
-
             vacation.UserID = user.Id;
-            context.Vacations.Add(vacation);
+            context.Add(vacation);
             context.SaveChanges();
 
-            var data = context.Vacations
-                .Include(vacation => vacation.User)
-                .Select(a => new VacationViewModel
-                {
-
-                    Name = a.User.Name,
-                    StartDate = a.StartDate,
-                    EndDate = a.EndDate,
-                    Reason = a.Reason,
-                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
-                    VacationDaysLeft = 0
-                })
-                .ToList();
-
-            return View("Index", data);
+            return RedirectToAction("Index");
         }
 
 
@@ -68,7 +53,8 @@ namespace MarinaHR.Controllers
                     EndDate = a.EndDate,
                     Reason = a.Reason,
                     VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
-                    VacationDaysLeft = 0
+                    VacationDaysLeft = 0,
+                    vacationStatus = a.vacationStatus
                 })
                 .ToList();
 
@@ -78,38 +64,31 @@ namespace MarinaHR.Controllers
        public ActionResult AcceptVacationRequest(int VacationID)
         {
 
+            var vacation = context.Vacations.Find(VacationID);
 
-            var data = context.Vacations
-                .Include(vacation => vacation.User)
-                .Select(a => new VacationViewModel
-                {
-                    Name = a.User.Name,
-                    StartDate = a.StartDate,
-                    EndDate = a.EndDate,
-                    Reason = a.Reason,
-                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
-                    VacationDaysLeft = 0
-                })
-                .ToList();
+            vacation.vacationStatus = VacationStatus.Accepted;
 
+            //vacation.StartDate = DateTime.Now.Date;
+
+            context.Update(vacation);
+            context.SaveChanges();
+
+            
             return RedirectToAction("Index");
         }
         public ActionResult RefuseVacationRequest(int VacationID)
         {
 
 
-            var data = context.Vacations
-                .Include(vacation => vacation.User)
-                .Select(a => new VacationViewModel
-                {
-                    Name = a.User.Name,
-                    StartDate = a.StartDate,
-                    EndDate = a.EndDate,
-                    Reason = a.Reason,
-                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
-                    VacationDaysLeft = 0
-                })
-                .ToList();
+            var vacation = context.Vacations.Find(VacationID);
+
+            vacation.vacationStatus = VacationStatus.Declined;
+
+            //vacation.StartDate = DateTime.Now.Date;
+
+            context.Update(vacation);
+            context.SaveChanges();
+
 
             return RedirectToAction("Index");
         }

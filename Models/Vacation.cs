@@ -13,7 +13,7 @@ namespace MarinaHR.Models
         [Display(Name = "السبب")]
         public string Reason { get; set; }
 
-        public Type VacationType { get; set; }
+        public VacationType VacationType { get; set; }
 
         [Display(Name = "من")]
         [DataType(DataType.Date)]
@@ -22,7 +22,7 @@ namespace MarinaHR.Models
         [Display(Name = "إلى")]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
-        public Status VacationStatus { get; set; } = Status.Requested;
+        public VacationStatus vacationStatus { get; set; } = VacationStatus.Requested;
 
         [Required]
         public string UserID { get; set; }
@@ -32,11 +32,11 @@ namespace MarinaHR.Models
         
     }
 
-    public enum Type {
+    public enum VacationType {
         Vacation,
         Medical
     }
-        public enum Status {
+        public enum VacationStatus {
         Requested,
         Accepted,
         Declined

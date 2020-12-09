@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using MarinaHR.Models;
 
 namespace MarinaHR.ViewModels
 {
@@ -17,6 +18,10 @@ namespace MarinaHR.ViewModels
         public string Reason { get; set; }
         public int VacationDays { get; set; }
         public int VacationDaysLeft  { get; set; }
+
+        public VacationStatus vacationStatus { get; set; } 
+        
+        
         
     }
 }
