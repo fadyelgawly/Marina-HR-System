@@ -187,6 +187,34 @@ namespace MarinaHR.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MarinaHR.Models.SalaryTransaction", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("dateTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("transactionType")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Transaction");
+                });
+
             modelBuilder.Entity("MarinaHR.Models.Vacation", b =>
                 {
                     b.Property<int>("ID")
@@ -443,7 +471,7 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
-                            ConcurrencyStamp = "456a2606-e421-4f8b-a522-8428ee3f3e3b",
+                            ConcurrencyStamp = "3609de7b-40ba-4c9c-b076-f06792125699",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE",
                             NameInArabic = "موظف"
@@ -451,7 +479,7 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "57784dee-54ff-4115-9835-da06239d6117",
-                            ConcurrencyStamp = "797c239a-e0d6-4b3a-9d6a-984f1c8084cf",
+                            ConcurrencyStamp = "58285488-f4d5-4e4a-aa31-a6045894b585",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR",
                             NameInArabic = "مدير"
@@ -474,6 +502,12 @@ namespace MarinaHR.Migrations
                     b.Property<int>("PlaceID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("SalaryAmount")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("SalaryType")
+                        .HasColumnType("INTEGER");
+
                     b.HasIndex("DepartmentID");
 
                     b.HasIndex("PlaceID");
@@ -485,23 +519,32 @@ namespace MarinaHR.Migrations
                         {
                             Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cf2f4514-1abc-4b7b-994f-06bc5becfd73",
+                            ConcurrencyStamp = "4b13ec6c-881e-4ab5-b268-b625ff931592",
                             Email = "azizmichael@aucegypt.edu",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENJGFGMVyMc2Qz+/TPkHNkws3JYpZeS1KZlKtRrbjP0Jf+vTX8WQcy/mN+FRCtcG9w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK+gCKE1QBAvCVk3dd9zu0Auz2b5VmMPrs2xve5z7IAQJe1jOsbfirwiKtrX0aKY+Q==",
                             PhoneNumber = "01111257052",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "0ba042f3-ce5f-4661-95c5-179dffda54f8",
+                            SecurityStamp = "07c4d295-5ed4-4c9c-80eb-de7d9bd040dc",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DepartmentID = 1,
                             Name = "عزيز حنا",
-                            PlaceID = 14
+                            PlaceID = 14,
+                            SalaryAmount = 1000.0,
+                            SalaryType = 1
                         });
+                });
+
+            modelBuilder.Entity("MarinaHR.Models.SalaryTransaction", b =>
+                {
+                    b.HasOne("MarinaHR.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("MarinaHR.Models.Vacation", b =>

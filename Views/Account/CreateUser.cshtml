@@ -40,6 +40,10 @@
     <input asp-for="PhoneNumber" class="form-control">
     <span asp-validation-for="PhoneNumber"></span>
 </div>
+<div class="form-group text-right">
+    <label asp-for="SalaryType" ></label>
+    <select asp-items="Html.GetEnumSelectList<SalaryFrequency>()"></select>
+    <span asp-validation-for="SalaryType"></span>
 
 
 <input type="submit" class="btn btn-info" value="أضف">

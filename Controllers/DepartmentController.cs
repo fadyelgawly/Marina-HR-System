@@ -22,6 +22,7 @@ namespace MarinaHR.Controllers
             this.userManager = userManager;
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -32,7 +33,8 @@ namespace MarinaHR.Controllers
         {
             context.Departments.Add(department);
             context.SaveChanges();
-            return View("Index", context.Departments.ToList());
+            return RedirectToAction("Index", "Department");
+          //  return View("Index", context.Departments.ToList());
         }
 
         public ActionResult Index()

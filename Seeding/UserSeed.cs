@@ -24,7 +24,9 @@ namespace MarinaHR.Seeding
                 EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString("D"),
                 DepartmentID = 1,
-                PlaceID = 14
+                PlaceID = 14,
+                SalaryAmount = 1000.0,
+                SalaryType = SalaryFrequency.Monthly
             };
 
             admin.PasswordHash = PasswordGenerator(admin, "admin");

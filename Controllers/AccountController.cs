@@ -92,7 +92,9 @@ namespace MarinaHR.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateUser()
         {
+
             ViewData["PlacesID"] = new SelectList(context.Places.ToList(), "ID", "Name");
+       
             ViewData["DepartmentID"] = new SelectList(context.Departments.ToList(), "ID", "Name");
             ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "NameInArabic");
             

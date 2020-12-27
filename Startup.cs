@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using MarinaHR.Data;
 using MarinaHR.Models;
+using MarinaHR.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +13,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Hangfire;
+using Hangfire.SQLite;
+using Hangfire.Dashboard;
+using Hangfire.EntityFrameworkCore;
+using MarinaHR.Services;
+
+
 namespace MarinaHR
 {
     public class Startup
@@ -44,10 +52,32 @@ namespace MarinaHR
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
+            
+            services.AddTransient<MarinaHR.Services.ISalaryManager, MarinaHR.Services.SalaryManager>();
+
+            var connectionString = Configuration.GetConnectionString("HangfireConnection");
+            services.AddHangfire(configuration =>
+                configuration.UseEFCoreStorage(builder =>
+                    builder.UseSqlite(connectionString),
+                    new EFCoreStorageOptions
+                    {
+                        CountersAggregationInterval = new TimeSpan(0, 5, 0),
+                        DistributedLockTimeout = new TimeSpan(0, 10, 0),
+                        JobExpirationCheckInterval = new TimeSpan(0, 30, 0),
+                        QueuePollInterval = new TimeSpan(0, 0, 15),
+                        Schema = string.Empty,
+                        SlidingInvisibilityTimeout = new TimeSpan(0, 5, 0),
+                    }).
+                UseDatabaseCreator());
+
+            services.AddHangfireServer();
+            services.AddMvc();
+
+            //services.AddSingleton<ISingleton, Singleton>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IBackgroundJobClient backgroundJobs, IWebHostEnvironment env, ISalaryManager salaryManager)
         {
             if (env.IsDevelopment())
             {
@@ -62,6 +92,17 @@ namespace MarinaHR
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseHangfireDashboard();
+
+            RecurringJob.AddOrUpdate(
+                () => salaryManager.ReleaseWeeklySalaries(),
+                "*/5 * * * * *");
+
+            RecurringJob.AddOrUpdate(
+                () => salaryManager.ReleaseMonthlySalaries(),
+                "*/20 * * * * *");
+
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -72,6 +113,8 @@ namespace MarinaHR
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHangfireDashboard();
             });
 
 

@@ -13,9 +13,9 @@ namespace MarinaHR.Models
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
         [Display(Name = "مكان العمل")]
+        public SalaryFrequency SalaryType { get; set; }
+        public double SalaryAmount { get; set; }        
         public int PlaceID { get; set; }
-
-
         [Display(Name = "القسم")]
         public int DepartmentID { get; set; }
         [Display(Name = "مكان العمل")]
@@ -24,7 +24,14 @@ namespace MarinaHR.Models
         [Display(Name = "القسم")]
         [ForeignKey("DepartmentID")]
         public virtual Department Department { get; set; }
+
+
         
         
+    }
+
+    public enum SalaryFrequency {
+        Weekly,
+        Monthly
     }
 }

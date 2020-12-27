@@ -14392,6 +14392,11 @@
   "RootNamespace": "MarinaHR",
   "Documents": [
     {
+      "FilePath": "/Users/fadyhanna/MarinaHR/Views/Salary/Create.cshtml",
+      "TargetPath": "Views\\Salary\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/fadyhanna/MarinaHR/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -14474,6 +14479,11 @@
     {
       "FilePath": "/Users/fadyhanna/MarinaHR/Views/Place/Create.cshtml",
       "TargetPath": "Views\\Place\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/fadyhanna/MarinaHR/Views/Salary/Index.cshtml",
+      "TargetPath": "Views\\Salary\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

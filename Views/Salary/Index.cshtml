@@ -1,0 +1,38 @@
+@model IList<MarinaHR.ViewModels.SalaryViewModel>
+@using MarinaHR.Models
+
+<div class="container">
+       <div class="text-left">
+            <a class="btn btn-success" asp-controller="Salary" asp-action="Create">الرواتب</a>
+        </div>
+    <div class="row">
+<div class="display-4 text-right float-right">
+    الرواتب
+</div>
+<br/>
+<table class="table table-striped float-left">
+    <thead>
+        <tr class="text-right">
+            <th scope="col">رقم المعملة</th>
+            <th scope="col">الموظف</th>
+            <th scope="col">اداع</th>
+            <th scope="col">صرف</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">@item.ID</td>
+            <td class="text-right">@item.Name</td>
+            <td class="text-right">  @if (item.transactionType == TransactionType.Deposit) {@item.Amount}</td>
+            <td class="text-right">  @if (item.transactionType == TransactionType.Credit)  {@item.Amount}</td>
+            <td class="text-right">@item.Description</td>
+            <td class="text-right">@item.dateTime.ToString("dd/MM/yyyy")</td>
+        </tr>
+    }
+</table>
+    </div>
+</div>
+

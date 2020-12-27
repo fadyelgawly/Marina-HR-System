@@ -1,3 +1,4 @@
+using System.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,8 +30,7 @@ namespace MarinaHR.Data
         public DbSet<Place> Places { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Vacation> Vacations { get; set; }
-        
-        
+        public DbSet<SalaryTransaction> Transaction { get; set; }    
         
     }
 }

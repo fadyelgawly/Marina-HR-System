@@ -8,6 +8,7 @@ namespace MarinaHR.Models
 {
     public class Vacation
     {
+        [Key]
         public int ID { get; set; }
 
         [Display(Name = "السبب")]

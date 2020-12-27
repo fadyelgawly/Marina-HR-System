@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+using MarinaHR.Models;
 namespace MarinaHR.ViewModels
 {
     public class CreateUserViewModel
@@ -24,7 +24,8 @@ namespace MarinaHR.ViewModels
 
         [Display(Name = "الاسم")]
         public string Name { get; set; }
-
+        public SalaryFrequency SalaryType { get; set; }
+        public double SalaryAmount { get; set; }  
         [Display(Name = "تاريخ الميلاد")]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
