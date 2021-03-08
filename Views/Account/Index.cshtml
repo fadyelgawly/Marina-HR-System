@@ -15,10 +15,14 @@
     </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td class="text-right">@item.Name</td>
-            <td class="text-right">@item.Department.Name</td>
-            <td class="text-right">@item.Place.Name</td>
-        </tr>
+        
+<tr>
+    <td class="text-right">@item.Name</td>
+    <td class="text-right">@item.Department.Name</td>
+    <td class="text-right">@item.Place.Name</td>
+    <td class="text-right"><a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+    <td class="text-right"><a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Send SMS</a></td>
+</tr>
+        
     }
 </table>

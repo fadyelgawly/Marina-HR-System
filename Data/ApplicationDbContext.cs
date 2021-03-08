@@ -31,6 +31,7 @@ namespace MarinaHR.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<Vacation> Vacations { get; set; }
         public DbSet<SalaryTransaction> Transaction { get; set; }    
+        public DbSet<MarinaHR.Models.User> User { get; set; }
         
     }
 }

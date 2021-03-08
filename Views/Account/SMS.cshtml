@@ -1,11 +1,10 @@
-﻿{
-  "ConnectionStrings": {
-    "DefaultConnection": "DataSource=app.db"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Warning"
-    }
-  },
-  "AllowedHosts": "*"
-}
+﻿@model MarinaHR.Models.SMSBody
+
+<form asp-action="SMS" asp-controller="Account" method="POST">
+    <div class="form-group">
+        <label asp-for="Body"></label>
+        <input asp-for="Body" class="form-control">
+        <span asp-validation-for="Body"></span>
+    </div>
+    <input type="submit" class="btn btn-info" value="أضف">
+</form>

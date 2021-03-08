@@ -14,7 +14,9 @@ namespace MarinaHR.Models
         public DateTime Birthdate { get; set; }
         [Display(Name = "مكان العمل")]
         public SalaryFrequency SalaryType { get; set; }
-        public double SalaryAmount { get; set; }        
+        public double SalaryAmount { get; set; }
+        [Display(Name = "رصيد الإجازة")]
+        public int VacationBalance { get; set; } = 21;
         public int PlaceID { get; set; }
         [Display(Name = "القسم")]
         public int DepartmentID { get; set; }
@@ -26,6 +28,7 @@ namespace MarinaHR.Models
         public virtual Department Department { get; set; }
 
 
+
         
         
     }
@@ -34,4 +37,12 @@ namespace MarinaHR.Models
         Weekly,
         Monthly
     }
+
+    public class SMSBody
+    {
+        public string Body { get; set; }
+    }
+
+
+
 }

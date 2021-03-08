@@ -10,6 +10,10 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace MarinaHR.Controllers
 {
@@ -68,7 +72,82 @@ namespace MarinaHR.Controllers
             }
         }
 
-         [HttpPost]
+        // GET: Accounts/Details/5
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await context.User
+                .Include(u => u.Department)
+                .Include(u => u.Place)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+
+        // GET: Accounts/SMS/5
+        public async Task<IActionResult> SMS(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await context.User
+                .Include(u => u.Department)
+                .Include(u => u.Place)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View();
+        }
+
+        // GET: Accounts/SMS/5
+        [HttpPost]
+        public async Task<IActionResult> SMS(string id, SMSBody model)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await context.User
+                .Include(u => u.Department)
+                .Include(u => u.Place)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            //var body = model.Body;
+            //var phone = user.PhoneNumber;
+
+            //TwilioClient.Init("ACa7aeb5e7e2bb26fd1f5554417a0052d6", "bac8411cc083d37caab1bcdf7592ac72");
+
+            //var message = MessageResource.Create(
+            //    body: body,
+            //    from: new Twilio.Types.PhoneNumber(body),
+            //    to: new Twilio.Types.PhoneNumber(body)
+            //);
+
+
+            return RedirectToAction("Index", "Account");
+        }
+
+
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if(ModelState.IsValid)
@@ -138,8 +217,99 @@ namespace MarinaHR.Controllers
 
             return View();
         }
-        
-         public ActionResult Index()
+
+        // GET: Accounts/Edit/5
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await context.User.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ViewData["DepartmentID"] = new SelectList(context.Departments, "ID", "ID", user.DepartmentID);
+            ViewData["PlaceID"] = new SelectList(context.Places, "ID", "Name", user.PlaceID);
+            return View(user);
+        }
+
+        // POST: Accounts/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Name,Birthdate,SalaryType,SalaryAmount,VacationBalance,PlaceID,DepartmentID,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] User user)
+        {
+            if (id != user.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    context.Update(user);
+                    await context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["DepartmentID"] = new SelectList(context.Departments, "ID", "ID", user.DepartmentID);
+            ViewData["PlaceID"] = new SelectList(context.Places, "ID", "Name", user.PlaceID);
+            return View(user);
+        }
+
+        // GET: Accounts/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await context.User
+                .Include(u => u.Department)
+                .Include(u => u.Place)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        // POST: Accounts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var user = await context.User.FindAsync(id);
+            context.User.Remove(user);
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool UserExists(string id)
+        {
+            return context.User.Any(e => e.Id == id);
+        }
+
+        public ActionResult Index()
         {
             var users = userManager.Users
                 .Include(user => user.Department)

@@ -1,40 +1,67 @@
 @model IList<MarinaHR.ViewModels.VacationViewModel>
 @using MarinaHR.Models
 
-<div class="display-4 text-right float-right">
+<div class="display-4 text-right">
     الاجازات
 </div>
-<br/>
-<table class="table table-striped float-left">
-    <thead>
-        <tr class="text-right">
-            <th scope="col">الاسم</th>
-            <th scope="col">من</th>
-            <th scope="col">إلى</th>
-            <th scope="col">عدد الايام</th>
-            <th scope="col">السبب</th>
-            <th scope="col">حالة الاجازة</th>
-        </tr>
-    </thead>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td class="text-right">@item.Name</td>
-            <td class="text-right">@item.StartDate.ToString("dd/MM/yyyy")</td>
-            <td class="text-right">@item.EndDate.ToString("dd/MM/yyyy")</td>
-            <td class="text-right">@((item.EndDate.Date - item.StartDate.Date).Days)</td>
-            <td class="text-right">@item.Reason</td>
-            <td class="text-right">
-                @if(item.vacationStatus == VacationStatus.Requested) 
-                {
-                    <a class="btn btn-success" asp-controller="Vacation" asp-action="AcceptVacationRequest" asp-route-VacationID="@item.ID">موافق</a>
-                    <a class="btn btn-danger" asp-controller="Vacation" asp-action="RefuseVacationRequest" asp-route-VacationID="@item.ID">رفض</a>
-                } else if (item.vacationStatus == VacationStatus.Accepted){
-                    @:Accepted
-                } else if (item.vacationStatus == VacationStatus.Declined){
-                    @:Declined
-                } 
-            </td>
-        </tr>
-    }
-</table>
+<br />
+<div class="container font-weight-bold">
+    <div class="row">
+        <div class="col-sm">
+            إجمالي رصيد الإجازة: @ViewData["TotalBalance"]
+        </div>
+      <div class="col-sm">
+                رصيد الإجازةالمستخدم:  @ViewData["UsedBalance"]
+      </div>
+      <div class="col-sm">
+          رصيد الإجازة المتبقي:  @ViewData["BalanceLeft"]
+      </div>
+
+        </div>
+    </div>
+
+    <br />
+    <table class="table table-striped float-left">
+        <thead>
+            <tr class="text-right">
+                <th scope="col">الاسم</th>
+                <th scope="col">من</th>
+                <th scope="col">إلى</th>
+                <th scope="col">عدد الايام</th>
+                <th scope="col">السبب</th>
+                <th scope="col">حالة الاجازة</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-right">@item.Name</td>
+                <td class="text-right">@item.StartDate.ToString("dd/MM/yyyy")</td>
+                <td class="text-right">@item.EndDate.ToString("dd/MM/yyyy")</td>
+                <td class="text-right">@((item.EndDate.Date - item.StartDate.Date).Days)</td>
+                <td class="text-right">@item.Reason</td>
+                <td class="text-right">
+
+
+
+                    @if (item.vacationStatus == VacationStatus.Requested && User.IsInRole("Administrator"))
+                    {
+                        <a class="btn btn-success" asp-controller="Vacation" asp-action="AcceptVacationRequest" asp-route-VacationID="@item.ID">موافق</a>
+                        <a class="btn btn-danger" asp-controller="Vacation" asp-action="RefuseVacationRequest" asp-route-VacationID="@item.ID">رفض</a>
+                    }
+                    else if (item.vacationStatus == VacationStatus.Requested)
+                    {
+                        @:تام الطلب
+                    }
+                    else if (item.vacationStatus == VacationStatus.Accepted)
+                    {
+                        @:وافقت
+                    }
+                    else if (item.vacationStatus == VacationStatus.Declined)
+                    {
+                        @:رفض
+                    }
+                </td>
+            </tr>
+        }
+    </table>

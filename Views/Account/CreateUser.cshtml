@@ -2,51 +2,62 @@
 
 
 <form asp-action="CreateUser" asp-controller="Account" method="POST">
-  
-<div class="form-group text-right">
-    <label asp-for="RoleID" ></label>
-    <select asp-for="RoleID" class="form-control" asp-items="ViewBag.RoleID"></select>
-    <span asp-validation-for="RoleID"></span>
-</div>
-<div class="form-group text-right">
-    <label asp-for="DepartmentID" ></label>
-    <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
-    <span asp-validation-for="DepartmentID"></span>
-</div>
-<div class="form-group text-right">
-    <label asp-for="PlaceID" ></label>
-    <select asp-for="PlaceID" class="form-control" asp-items="ViewBag.PlacesID"></select>
-    <span asp-validation-for="PlaceID"></span>
-</div>
-<div class="form-group text-right">
-    <label asp-for="Name" ></label>
-    <input asp-for="Name" class="form-control">
-    <span asp-validation-for="Name"></span>
-</div>
-<div class="form-group text-right">
-    <label asp-for="UserName" ></label>
-    <input asp-for="UserName" class="form-control">
-    <span asp-validation-for="UserName"></span>
-</div>
-<div class="text-right">كلمة المرور الاساسية '1234'</div>
 
-<div class="form-group text-right">
-    <label asp-for="Birthdate" ></label>
-    <input asp-for="Birthdate" class="form-control">
-    <span asp-validation-for="Birthdate"></span>
-</div>
-<div class="form-group text-right">
-    <label asp-for="PhoneNumber" ></label>
-    <input asp-for="PhoneNumber" class="form-control">
-    <span asp-validation-for="PhoneNumber"></span>
-</div>
-<div class="form-group text-right">
-    <label asp-for="SalaryType" ></label>
-    <select asp-items="Html.GetEnumSelectList<SalaryFrequency>()"></select>
-    <span asp-validation-for="SalaryType"></span>
+    <div class="form-group text-right">
+        <label asp-for="RoleID"></label>
+        <select asp-for="RoleID" class="form-control" asp-items="ViewBag.RoleID"></select>
+        <span asp-validation-for="RoleID"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="DepartmentID"></label>
+        <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+        <span asp-validation-for="DepartmentID"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="PlaceID"></label>
+        <select asp-for="PlaceID" class="form-control" asp-items="ViewBag.PlacesID"></select>
+        <span asp-validation-for="PlaceID"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control">
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div class="text-right">كلمة المرور الاساسية '1234'</div>
 
-
-<input type="submit" class="btn btn-info" value="أضف">
+    <div class="form-group text-right">
+        <label asp-for="Birthdate"></label>
+        <input asp-for="Birthdate" class="form-control">
+        <span asp-validation-for="Birthdate"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" class="form-control">
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="SalaryAmount"></label>
+        <input asp-for="SalaryAmount" class="form-control">
+        <span asp-validation-for="SalaryAmount"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="VacationBalance"></label>
+        <input asp-for="VacationBalance" class="form-control">
+        <span asp-validation-for="VacationBalance"></span>
+    </div>
+    <div class="form-group text-right">
+        <label asp-for="SalaryType"></label>
+        <select asp-items="Html.GetEnumSelectList<SalaryFrequency>()"></select>
+        <span asp-validation-for="SalaryType"></span>
+    </div>
+    <div class="form-group text-right">
+        <input type="submit" class="btn btn-info" value="أضف">
+    </div>
 </form>
 
       

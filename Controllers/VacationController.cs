@@ -40,8 +40,9 @@ namespace MarinaHR.Controllers
         }
 
 
-        public ActionResult Index()
+        public async Task<ActionResult> IndexAsync()
         {
+
             
             var data = context.Vacations
                 .Include(vacation => vacation.User)
@@ -52,11 +53,31 @@ namespace MarinaHR.Controllers
                     StartDate = a.StartDate,
                     EndDate = a.EndDate,
                     Reason = a.Reason,
-                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days,
+                    VacationDays = (a.EndDate.Date - a.StartDate.Date).Days + 1,
                     VacationDaysLeft = 0,
                     vacationStatus = a.vacationStatus
                 })
                 .ToList();
+
+            var user = await userManager.GetUserAsync(User);
+
+            int TotalBalance = user.VacationBalance;
+
+            var vacationBalance = context.Vacations
+                .Include(vacation => vacation.User)
+                .Where(x => x.UserID == GetCurrentUserId() && x.vacationStatus == VacationStatus.Accepted)
+                .Select(a => new VacationBalance
+                {
+                    vacationBalance = (a.EndDate.Date - a.StartDate.Date).Days + 1,
+                })
+                .ToList();
+
+            int usedVacations = vacationBalance.Sum(x => x.vacationBalance);
+
+            ViewData["TotalBalance"] = TotalBalance;
+            ViewData["UsedBalance"] = usedVacations;
+            ViewData["BalanceLeft"] = TotalBalance - usedVacations;
+
 
             return View(data);
         }
@@ -101,4 +122,9 @@ namespace MarinaHR.Controllers
             return userManager.GetUserId(User);
         }
     }
+
+    public class VacationBalance
+    {
+        public int vacationBalance { get; set; }
+    };
 }

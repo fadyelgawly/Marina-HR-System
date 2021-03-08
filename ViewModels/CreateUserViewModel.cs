@@ -24,11 +24,19 @@ namespace MarinaHR.ViewModels
 
         [Display(Name = "الاسم")]
         public string Name { get; set; }
+        
+        [Display(Name = "نوع الصرف")]
         public SalaryFrequency SalaryType { get; set; }
-        public double SalaryAmount { get; set; }  
+
+        [Display(Name = "المبلغ المصروف")]
+        public double SalaryAmount { get; set; }
+        
         [Display(Name = "تاريخ الميلاد")]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
+
+        [Display(Name = "رصيد الإجازة")]
+        public int VacationBalance { get; set; }
 
         [Display(Name = "رقم الهاتف")]
         public string PhoneNumber { get; set; }

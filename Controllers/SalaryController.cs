@@ -47,9 +47,6 @@ namespace MarinaHR.Controllers
 
         public ActionResult Index()
         {
-
-          //  SalaryManager.Shared.ReleaseRecurrentSalaries();
-
             var data = context.Transaction
                 .Include(transaction => transaction.User)
                 .Select(a => new SalaryViewModel
@@ -60,7 +57,31 @@ namespace MarinaHR.Controllers
                     dateTime = a.dateTime,
                     transactionType = a.transactionType
                 })
-                .ToList();    
+                .ToList();
+
+            return View(data);
+        }
+
+        public async Task<ActionResult> MySalaryAsync()
+        {
+            var user = await userManager.GetUserAsync(User);
+
+            var data = context.Transaction
+                .Where(tran => tran.UserID == user.Id && tran.transactionType != TransactionType.Request)
+                .Include(transaction => transaction.User)
+                .Select(a => new SalaryViewModel
+                {
+                    ID = a.ID,
+                    Name = a.User.Name,
+                    Amount = a.Amount,
+                    dateTime = a.dateTime,
+                    transactionType = a.transactionType
+                })
+                .ToList();
+
+
+            double TotalBalance = data.Sum(x => x.Amount);
+            ViewData["TotalBalance"] = TotalBalance;
 
             return View(data);
         }

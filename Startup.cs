@@ -96,11 +96,11 @@ namespace MarinaHR
 
             RecurringJob.AddOrUpdate(
                 () => salaryManager.ReleaseWeeklySalaries(),
-                "*/5 * * * * *");
+                "0 0 * * 4"); // Every Thurday at 00:00am
 
             RecurringJob.AddOrUpdate(
                 () => salaryManager.ReleaseMonthlySalaries(),
-                "*/20 * * * * *");
+                "0 0 1 * *"); // Day 1 of every month at 00:00am
 
 
             app.UseRouting();

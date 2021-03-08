@@ -31,6 +31,7 @@ namespace MarinaHR.Models
 
     public enum TransactionType {
         Credit,
-        Deposit
+        Deposit,
+        Request
     }
 }

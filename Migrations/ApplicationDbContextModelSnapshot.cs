@@ -471,7 +471,7 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "93c4a412-3af5-49f8-9b27-cecc7b6f6e79",
-                            ConcurrencyStamp = "3609de7b-40ba-4c9c-b076-f06792125699",
+                            ConcurrencyStamp = "91a556df-fbd9-44c8-a1a1-d2f784d5e33b",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE",
                             NameInArabic = "موظف"
@@ -479,7 +479,7 @@ namespace MarinaHR.Migrations
                         new
                         {
                             Id = "57784dee-54ff-4115-9835-da06239d6117",
-                            ConcurrencyStamp = "58285488-f4d5-4e4a-aa31-a6045894b585",
+                            ConcurrencyStamp = "9a437ee4-eba8-422c-bd89-90e1f5e5bcd5",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR",
                             NameInArabic = "مدير"
@@ -508,6 +508,9 @@ namespace MarinaHR.Migrations
                     b.Property<int>("SalaryType")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("VacationBalance")
+                        .HasColumnType("INTEGER");
+
                     b.HasIndex("DepartmentID");
 
                     b.HasIndex("PlaceID");
@@ -519,16 +522,16 @@ namespace MarinaHR.Migrations
                         {
                             Id = "6510262c-bbcb-4629-b1e7-20de05ef7ae6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4b13ec6c-881e-4ab5-b268-b625ff931592",
+                            ConcurrencyStamp = "7da02bea-d416-4e74-bb6f-5acd64cdf8c3",
                             Email = "azizmichael@aucegypt.edu",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedEmail = "AZIZMICHAEL@AUCEGYPT.EDU",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK+gCKE1QBAvCVk3dd9zu0Auz2b5VmMPrs2xve5z7IAQJe1jOsbfirwiKtrX0aKY+Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENymmDDnba8rTcd5zkgbUqIvEZ0k42eQEkyGiuRLyTt27Lyvv9SuqgXiPqTsIQabVg==",
                             PhoneNumber = "01111257052",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "07c4d295-5ed4-4c9c-80eb-de7d9bd040dc",
+                            SecurityStamp = "7ca30a7a-b729-4ba6-ac1b-fd354d2b8cd1",
                             TwoFactorEnabled = false,
                             UserName = "admin",
                             Birthdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -536,7 +539,8 @@ namespace MarinaHR.Migrations
                             Name = "عزيز حنا",
                             PlaceID = 14,
                             SalaryAmount = 1000.0,
-                            SalaryType = 1
+                            SalaryType = 1,
+                            VacationBalance = 21
                         });
                 });
 
