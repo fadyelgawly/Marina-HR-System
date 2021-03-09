@@ -35,12 +35,28 @@ namespace MarinaHR.Controllers
         {
             var data = context.Places.Select(a => new PlaceDetailsViewModel
                 {
+                    ID = a.ID,
                     Name = a.Name,
                     UsersCount = a.Users.Count()
                 })
                 .ToList();
 
             return View(data);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var place = context.Places.Where(e => e.ID == id).FirstOrDefault();
+
+            if (place == null)
+            {
+                return NotFound();
+            }
+
+            context.Remove(place);
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
