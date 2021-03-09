@@ -167,19 +167,19 @@ namespace MarinaHR.Controllers
             await signinManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> CreateUser()
         {
 
             ViewData["PlacesID"] = new SelectList(context.Places.ToList(), "ID", "Name");
-       
             ViewData["DepartmentID"] = new SelectList(context.Departments.ToList(), "ID", "Name");
             ViewData["RoleID"] = new SelectList(await roleManager.Roles.ToListAsync(), "Id", "NameInArabic");
             
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserViewModel model)
         {
@@ -218,40 +218,66 @@ namespace MarinaHR.Controllers
             return View();
         }
 
-        // GET: Accounts/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var user = await context.User.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
-            }
-            ViewData["DepartmentID"] = new SelectList(context.Departments, "ID", "ID", user.DepartmentID);
-            ViewData["PlaceID"] = new SelectList(context.Places, "ID", "Name", user.PlaceID);
-            return View(user);
+            } 
+                var userVM = new CreateUserViewModel
+                {
+                    Name = user.Name,
+                    UserName = user.UserName,
+                    PlaceID = user.PlaceID,
+                    DepartmentID = user.DepartmentID,
+                    SalaryType = user.SalaryType,
+                    SalaryAmount = user.SalaryAmount,
+                    Birthdate = user.Birthdate,
+                    VacationBalance = user.VacationBalance,
+                    PhoneNumber = user.PhoneNumber
+                };
+            
+            ViewData["PlacesID"] = new SelectList(context.Places.ToList(), "ID", "Name");
+            ViewData["DepartmentID"] = new SelectList(context.Departments.ToList(), "ID", "Name");
+
+            return View(userVM);
         }
+
 
         // POST: Accounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,Birthdate,SalaryType,SalaryAmount,VacationBalance,PlaceID,DepartmentID,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] User user)
+        public async Task<IActionResult> Edit(string id, CreateUserViewModel userVM)
         {
-            if (id != user.Id)
+            if (id == null)
             {
                 return NotFound();
             }
+            var user = await context.User.FindAsync(id);
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    user.Name = userVM.Name;
+                    user.UserName = userVM.UserName;
+                    user.PlaceID = userVM.PlaceID;
+                    user.DepartmentID = userVM.DepartmentID;
+                    user.SalaryType = userVM.SalaryType;
+                    user.SalaryAmount = userVM.SalaryAmount;
+                    user.Birthdate = userVM.Birthdate;
+                    user.VacationBalance = userVM.VacationBalance;
+                    user.PhoneNumber = userVM.PhoneNumber;
+
                     context.Update(user);
                     await context.SaveChangesAsync();
                 }
@@ -270,10 +296,12 @@ namespace MarinaHR.Controllers
             }
             ViewData["DepartmentID"] = new SelectList(context.Departments, "ID", "ID", user.DepartmentID);
             ViewData["PlaceID"] = new SelectList(context.Places, "ID", "Name", user.PlaceID);
-            return View(user);
+
+            return View(userVM);
         }
 
         // GET: Accounts/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -294,6 +322,7 @@ namespace MarinaHR.Controllers
         }
 
         // POST: Accounts/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -309,6 +338,7 @@ namespace MarinaHR.Controllers
             return context.User.Any(e => e.Id == id);
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var users = userManager.Users
@@ -321,12 +351,5 @@ namespace MarinaHR.Controllers
             var passwordHash = new PasswordHasher<User>();
             return passwordHash.HashPassword(user, password);
         }
-
-
-
-
-
-
-
     }
 }
