@@ -92,6 +92,7 @@ namespace MarinaHR.Controllers
             return View(user);
         }
 
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -321,26 +322,6 @@ namespace MarinaHR.Controllers
             return View(userVM);
         }
 
-        // GET: Accounts/Delete/5
-        [Authorize]
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await context.User
-                .Include(u => u.Department)
-                .Include(u => u.Place)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return View(user);
-        }
 
         // POST: Accounts/Delete/5
         [Authorize]
