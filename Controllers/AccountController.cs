@@ -191,7 +191,6 @@ namespace MarinaHR.Controllers
                     Name = model.Name,
                     UserName = model.UserName,
                     PhoneNumber = model.PhoneNumber,
-                    Birthdate = model.Birthdate,
                     DepartmentID = model.DepartmentID,
                     PlaceID = model.PlaceID,
                     SalaryType = model.SalaryType,
@@ -240,7 +239,6 @@ namespace MarinaHR.Controllers
                     DepartmentID = user.DepartmentID,
                     SalaryType = user.SalaryType,
                     SalaryAmount = user.SalaryAmount,
-                    Birthdate = user.Birthdate,
                     VacationBalance = user.VacationBalance,
                     PhoneNumber = user.PhoneNumber
                 };
@@ -276,7 +274,6 @@ namespace MarinaHR.Controllers
                     user.DepartmentID = userVM.DepartmentID;
                     user.SalaryType = userVM.SalaryType;
                     user.SalaryAmount = userVM.SalaryAmount;
-                    user.Birthdate = userVM.Birthdate;
                     user.VacationBalance = userVM.VacationBalance;
                     user.PhoneNumber = userVM.PhoneNumber;
 
