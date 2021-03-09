@@ -92,6 +92,28 @@ namespace MarinaHR.Controllers
             return View(user);
         }
 
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await context.User
+                .Include(u => u.Department)
+                .Include(u => u.Place)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            context.Remove(user);
+            context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: Accounts/SMS/5
         public async Task<IActionResult> SMS(string id)
