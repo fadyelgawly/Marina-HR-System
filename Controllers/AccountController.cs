@@ -194,8 +194,10 @@ namespace MarinaHR.Controllers
                     Birthdate = model.Birthdate,
                     DepartmentID = model.DepartmentID,
                     PlaceID = model.PlaceID,
-
-                };
+                    SalaryType = model.SalaryType,
+                    SalaryAmount = model.SalaryAmount,
+                    VacationBalance = model.VacationBalance
+            };
                     
                 var result = await userManager.CreateAsync(user, "1234");
 
